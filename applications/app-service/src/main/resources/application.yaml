@@ -52,7 +52,7 @@ resilience4j:
         waitDurationInOpenState: "10s"
 commons:
   jms:
-    input-concurrency: 10
+    input-concurrency: 1
     input-queue: "DEV.QUEUE.2"
     input-queue-alias: ""
     reactive: true

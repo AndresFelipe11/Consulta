@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':model')
+    implementation 'org.springframework:spring-context'
+    implementation 'org.springframework.ws:spring-ws-core:3.0.10.RELEASE'
+}

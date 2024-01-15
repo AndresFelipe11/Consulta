@@ -20,3 +20,5 @@ include ':rest-consumer'
 project(':rest-consumer').projectDir = file('./infrastructure/driven-adapters/rest-consumer')
 include ':mq-listener'
 project(':mq-listener').projectDir = file('./infrastructure/entry-points/mq-listener')
+include ':soap-consumer'
+project(':soap-consumer').projectDir = file('./infrastructure/driven-adapters/soap-consumer')
