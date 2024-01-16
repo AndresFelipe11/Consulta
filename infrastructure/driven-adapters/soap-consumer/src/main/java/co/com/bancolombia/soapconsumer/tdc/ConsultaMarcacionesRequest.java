@@ -5,7 +5,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement(name = "consultaMarcacionesRequest")
+@XmlRootElement(name = "consultaMarcacionesRequest", namespace = "urn:com:bancolombia:consultamarcaciones")
 public class ConsultaMarcacionesRequest {
     private String codigoProducto;
     private String idCifin;
@@ -15,7 +15,7 @@ public class ConsultaMarcacionesRequest {
     private String tipoIdentificacion;
 
 
-    @XmlElement
+    @XmlElement(namespace = "urn:com:bancolombia:consultamarcaciones")
     public String getCodigoProducto() {
         return codigoProducto;
     }
@@ -24,7 +24,7 @@ public class ConsultaMarcacionesRequest {
         this.codigoProducto = codigoProducto;
     }
 
-    @XmlElement
+    @XmlElement(namespace = "urn:com:bancolombia:consultamarcaciones")
     public String getIdCifin() {
         return idCifin;
     }
@@ -33,7 +33,7 @@ public class ConsultaMarcacionesRequest {
         this.idCifin = idCifin;
     }
 
-    @XmlElement
+    @XmlElement(namespace = "urn:com:bancolombia:consultamarcaciones")
     public String getMotivoConsulta() {
         return motivoConsulta;
     }
@@ -42,7 +42,7 @@ public class ConsultaMarcacionesRequest {
         this.motivoConsulta = motivoConsulta;
     }
 
-    @XmlElement
+    @XmlElement(namespace = "urn:com:bancolombia:consultamarcaciones")
     public String getNumeroIdentificacion() {
         return numeroIdentificacion;
     }
@@ -51,7 +51,7 @@ public class ConsultaMarcacionesRequest {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
-    @XmlElement
+    @XmlElement(namespace = "urn:com:bancolombia:consultamarcaciones")
     public String getPassword() {
         return password;
     }
@@ -60,7 +60,7 @@ public class ConsultaMarcacionesRequest {
         this.password = password;
     }
 
-    @XmlElement
+    @XmlElement(namespace = "urn:com:bancolombia:consultamarcaciones")
     public String getTipoIdentificacion() {
         return tipoIdentificacion;
     }

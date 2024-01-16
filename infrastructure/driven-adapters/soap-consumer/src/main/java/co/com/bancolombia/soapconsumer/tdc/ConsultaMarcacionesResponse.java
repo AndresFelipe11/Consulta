@@ -3,7 +3,7 @@ package co.com.bancolombia.soapconsumer.tdc;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "consultaMarcacionesResponse")
+@XmlRootElement(name = "consultaMarcacionesResponse", namespace = "urn:com:bancolombia:consultamarcaciones")
 public class ConsultaMarcacionesResponse {
     private String CATS;
     private String GMF;
@@ -220,7 +220,7 @@ public void setEntidadGMF(String entidadGMF) {
         this.tipoIdentificacion = tipoIdentificacion;
     }
 
-    public boolean getGeneroInconsistencias() {
+    public boolean isGeneroInconsistencias() {
         return generoInconsistencias;
     }
 

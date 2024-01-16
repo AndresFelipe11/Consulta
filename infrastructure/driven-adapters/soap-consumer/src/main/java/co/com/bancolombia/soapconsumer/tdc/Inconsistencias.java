@@ -1,7 +1,9 @@
 package co.com.bancolombia.soapconsumer.tdc;
 
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "inconsistencias")
 public class Inconsistencias {
     private String codigo;
     private String descripcion;

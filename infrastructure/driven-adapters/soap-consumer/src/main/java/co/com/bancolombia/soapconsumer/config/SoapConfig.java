@@ -11,27 +11,33 @@ import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 public class SoapConfig {
 
     @Bean
-    public Jaxb2Marshaller marshaller() {
+    public Jaxb2Marshaller marshaller(){
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setContextPath("co.com.bancolombia.soapconsumer.tdc");
         return marshaller;
     }
 
     @Bean
+    public SoapConsumer soapConsumer(Jaxb2Marshaller jaxb2Marshaller){
+        SoapConsumer soapClient = new SoapConsumer();
+        soapClient.setMarshaller(jaxb2Marshaller);
+        soapClient.setUnmarshaller(jaxb2Marshaller);
+        soapClient.setWebServiceTemplate(webServiceTemplate(jaxb2Marshaller));
+        return soapClient;
+    }
+
+    @Bean
     public WebServiceTemplate webServiceTemplate(Jaxb2Marshaller jaxb2Marshaller) {
-        WebServiceTemplate template = new WebServiceTemplate(jaxb2Marshaller);
-        // Configura otras propiedades del WebServiceTemplate si es necesario
-        // Por ejemplo, timeouts, interceptores, etc.
-        template.setMessageSender(new HttpComponentsMessageSender());
+        WebServiceTemplate template = new WebServiceTemplate();
+        template.setMarshaller(jaxb2Marshaller);
+        template.setUnmarshaller(jaxb2Marshaller);
+        template.setMessageSender(httpComponentsMessageSender());
         return template;
     }
 
     @Bean
-    public SoapConsumer soapClient(Jaxb2Marshaller jaxb2Marshaller, WebServiceTemplate webServiceTemplate) {
-        SoapConsumer soapClient = new SoapConsumer();
-        soapClient.setMarshaller(jaxb2Marshaller);
-        soapClient.setUnmarshaller(jaxb2Marshaller);
-        soapClient.setWebServiceTemplate(webServiceTemplate);
-        return soapClient;
+    public HttpComponentsMessageSender httpComponentsMessageSender() {
+        return new HttpComponentsMessageSender();
     }
+
 }

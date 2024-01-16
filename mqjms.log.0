@@ -1,4 +1,4 @@
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:31:37 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/28db660d][connectionId=414D5143514D312020202020202020206789A66500020240,traceIdentifier=2,remoteTraceIdentifier=95]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -27,7 +27,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -44,7 +44,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -63,14 +63,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -111,7 +106,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:31:37 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/28db660d][connectionId=414D5143514D312020202020202020206789A66500020240,traceIdentifier=2,remoteTraceIdentifier=95]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -140,7 +135,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -157,7 +152,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -176,14 +171,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -224,7 +214,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:31:37 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/28db660d][connectionId=414D5143514D312020202020202020206789A66500020240,traceIdentifier=2,remoteTraceIdentifier=95]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -253,7 +243,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -270,7 +260,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -289,14 +279,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @6ac49352; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -337,7 +322,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:42:17 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -366,7 +351,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -383,7 +368,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -402,46 +387,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
-                               : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
-                               : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-                               : jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                               : java.lang.reflect.Method.invoke(Method.java:568)
-                               : org.springframework.messaging.handler.invocation.reactive.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:137)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
-                               : reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
-                               : reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
-                               : reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470)
-                               : reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.trySchedule(MonoSubscribeOn.java:189)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onSubscribe(MonoSubscribeOn.java:134)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
-                               : reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
-                               : reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
-                               : reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
-                               : reactor.core.publisher.Mono.subscribe(Mono.java:4512)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.run(MonoSubscribeOn.java:126)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:84)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:37)
-                               : java.util.concurrent.FutureTask.run(FutureTask.java:264)
-                               : java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-                               : java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-                               : java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-                               : java.lang.Thread.run(Thread.java:833)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
 '.
 
 EXPLICACIÓN:
@@ -450,7 +398,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:42:17 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -479,7 +427,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -496,7 +444,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -515,46 +463,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
-                               : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
-                               : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-                               : jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                               : java.lang.reflect.Method.invoke(Method.java:568)
-                               : org.springframework.messaging.handler.invocation.reactive.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:137)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
-                               : reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
-                               : reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
-                               : reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470)
-                               : reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.trySchedule(MonoSubscribeOn.java:189)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onSubscribe(MonoSubscribeOn.java:134)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
-                               : reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
-                               : reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
-                               : reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
-                               : reactor.core.publisher.Mono.subscribe(Mono.java:4512)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.run(MonoSubscribeOn.java:126)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:84)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:37)
-                               : java.util.concurrent.FutureTask.run(FutureTask.java:264)
-                               : java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-                               : java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-                               : java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-                               : java.lang.Thread.run(Thread.java:833)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
 '.
 
 EXPLICACIÓN:
@@ -563,13 +474,14 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:42:17 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
 El método onMessage() debería modificarse para evitar que emita excepciones.
                          Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
-                          Pila : jdk.internal.reflect.GeneratedConstructorAccessor48.newInstance(null:-1)
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
                                : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
                                : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
                                : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -591,7 +503,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -608,7 +520,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -627,46 +539,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
-                               : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
-                               : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-                               : jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                               : java.lang.reflect.Method.invoke(Method.java:568)
-                               : org.springframework.messaging.handler.invocation.reactive.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:137)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
-                               : reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
-                               : reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
-                               : reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470)
-                               : reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.trySchedule(MonoSubscribeOn.java:189)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onSubscribe(MonoSubscribeOn.java:134)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
-                               : reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
-                               : reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
-                               : reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
-                               : reactor.core.publisher.Mono.subscribe(Mono.java:4512)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.run(MonoSubscribeOn.java:126)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:84)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:37)
-                               : java.util.concurrent.FutureTask.run(FutureTask.java:264)
-                               : java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-                               : java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-                               : java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-                               : java.lang.Thread.run(Thread.java:833)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
 '.
 
 EXPLICACIÓN:
@@ -675,13 +550,14 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:42:17 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
 El método onMessage() debería modificarse para evitar que emita excepciones.
                          Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
-                          Pila : jdk.internal.reflect.GeneratedConstructorAccessor48.newInstance(null:-1)
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
                                : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
                                : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
                                : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -703,7 +579,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -720,7 +596,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -739,46 +615,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
-                               : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
-                               : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-                               : jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                               : java.lang.reflect.Method.invoke(Method.java:568)
-                               : org.springframework.messaging.handler.invocation.reactive.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:137)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
-                               : reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
-                               : reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
-                               : reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470)
-                               : reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.trySchedule(MonoSubscribeOn.java:189)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onSubscribe(MonoSubscribeOn.java:134)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
-                               : reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
-                               : reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
-                               : reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
-                               : reactor.core.publisher.Mono.subscribe(Mono.java:4512)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.run(MonoSubscribeOn.java:126)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:84)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:37)
-                               : java.util.concurrent.FutureTask.run(FutureTask.java:264)
-                               : java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-                               : java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-                               : java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-                               : java.lang.Thread.run(Thread.java:833)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
 '.
 
 EXPLICACIÓN:
@@ -787,13 +626,14 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:42:18 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
 El método onMessage() debería modificarse para evitar que emita excepciones.
                          Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
-                          Pila : jdk.internal.reflect.GeneratedConstructorAccessor48.newInstance(null:-1)
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
                                : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
                                : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
                                : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -815,7 +655,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -832,7 +672,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -851,46 +691,9 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
-                               : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
-                               : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-                               : jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                               : java.lang.reflect.Method.invoke(Method.java:568)
-                               : org.springframework.messaging.handler.invocation.reactive.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:137)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
-                               : reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
-                               : reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
-                               : reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470)
-                               : reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.trySchedule(MonoSubscribeOn.java:189)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onSubscribe(MonoSubscribeOn.java:134)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
-                               : reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
-                               : reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
-                               : reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
-                               : reactor.core.publisher.Mono.subscribe(Mono.java:4512)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.run(MonoSubscribeOn.java:126)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:84)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:37)
-                               : java.util.concurrent.FutureTask.run(FutureTask.java:264)
-                               : java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-                               : java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-                               : java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-                               : java.lang.Thread.run(Thread.java:833)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
 '.
 
 EXPLICACIÓN:
@@ -899,13 +702,14 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 3:42:18 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
 El método onMessage() debería modificarse para evitar que emita excepciones.
                          Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
-                          Pila : jdk.internal.reflect.GeneratedConstructorAccessor48.newInstance(null:-1)
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
                                : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
                                : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
                                : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
@@ -927,7 +731,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.lang.Exception
                           Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
                                : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
@@ -944,7 +748,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
                          Clase : class java.util.concurrent.CompletionException
                           Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
                                : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
@@ -963,46 +767,313 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
                                : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
                                : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
-     Se debe a [3] --> Mensaje : java.lang.IllegalStateException: No marshaller registered. Check configuration of WebServiceTemplate.
-                         Clase : class java.lang.IllegalStateException
-                          Pila : org.springframework.ws.client.core.WebServiceTemplate$2.doWithMessage(WebServiceTemplate.java:397)
-                               : org.springframework.ws.client.core.WebServiceTemplate.doSendAndReceive(WebServiceTemplate.java:569)
-                               : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
-                               : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
-                               : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
-                               : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
-                               : jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-                               : jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                               : java.lang.reflect.Method.invoke(Method.java:568)
-                               : org.springframework.messaging.handler.invocation.reactive.InvocableHandlerMethod.lambda$invoke$0(InvocableHandlerMethod.java:137)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:132)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:297)
-                               : reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:478)
-                               : reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
-                               : reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:470)
-                               : reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
-                               : reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.trySchedule(MonoSubscribeOn.java:189)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.onSubscribe(MonoSubscribeOn.java:134)
-                               : reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:152)
-                               : reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
-                               : reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
-                               : reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
-                               : reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
-                               : reactor.core.publisher.Mono.subscribe(Mono.java:4512)
-                               : reactor.core.publisher.MonoSubscribeOn$SubscribeOnSubscriber.run(MonoSubscribeOn.java:126)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:84)
-                               : reactor.core.scheduler.WorkerTask.call(WorkerTask.java:37)
-                               : java.util.concurrent.FutureTask.run(FutureTask.java:264)
-                               : java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-                               : java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-                               : java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-                               : java.lang.Thread.run(Thread.java:833)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
+'.
+
+EXPLICACIÓN:
+La excepción no está incluida dentro de los tipos seleccionados para su entrega al escucha de excepciones de la conexión y, por lo tanto, se ha pasado por alto.
+
+ACCIÓN:
+Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
+--------------------------------------------------------------------
+16 de enero de 2024, 3:42:18 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
+                       Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
+Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
+El método onMessage() debería modificarse para evitar que emita excepciones.
+                         Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+                               : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+                               : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+                               : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+                               : com.ibm.msg.client.commonservices.j2se.NLSServices.createException(NLSServices.java:334)
+                               : com.ibm.msg.client.commonservices.nls.NLSServices.createException(NLSServices.java:226)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsErrorUtils.createException(JmsErrorUtils.java:126)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1356)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.Exception
+                          Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.util.concurrent.CompletionException
+                          Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
+                               : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
+                               : co.com.bancolombia.commons.jms.mq.listeners.MQMessageListenerRetries.onMessage(MQMessageListenerRetries.java:23)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1193)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
+'.
+
+EXPLICACIÓN:
+La excepción no está incluida dentro de los tipos seleccionados para su entrega al escucha de excepciones de la conexión y, por lo tanto, se ha pasado por alto.
+
+ACCIÓN:
+Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
+--------------------------------------------------------------------
+16 de enero de 2024, 3:42:18 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
+                       Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
+Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
+El método onMessage() debería modificarse para evitar que emita excepciones.
+                         Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+                               : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+                               : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+                               : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+                               : com.ibm.msg.client.commonservices.j2se.NLSServices.createException(NLSServices.java:334)
+                               : com.ibm.msg.client.commonservices.nls.NLSServices.createException(NLSServices.java:226)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsErrorUtils.createException(JmsErrorUtils.java:126)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1356)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.Exception
+                          Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.util.concurrent.CompletionException
+                          Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
+                               : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
+                               : co.com.bancolombia.commons.jms.mq.listeners.MQMessageListenerRetries.onMessage(MQMessageListenerRetries.java:23)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1193)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
+'.
+
+EXPLICACIÓN:
+La excepción no está incluida dentro de los tipos seleccionados para su entrega al escucha de excepciones de la conexión y, por lo tanto, se ha pasado por alto.
+
+ACCIÓN:
+Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
+--------------------------------------------------------------------
+16 de enero de 2024, 3:42:18 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
+                       Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
+Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
+El método onMessage() debería modificarse para evitar que emita excepciones.
+                         Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+                               : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+                               : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+                               : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+                               : com.ibm.msg.client.commonservices.j2se.NLSServices.createException(NLSServices.java:334)
+                               : com.ibm.msg.client.commonservices.nls.NLSServices.createException(NLSServices.java:226)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsErrorUtils.createException(JmsErrorUtils.java:126)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1356)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.Exception
+                          Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.util.concurrent.CompletionException
+                          Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
+                               : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
+                               : co.com.bancolombia.commons.jms.mq.listeners.MQMessageListenerRetries.onMessage(MQMessageListenerRetries.java:23)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1193)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
+'.
+
+EXPLICACIÓN:
+La excepción no está incluida dentro de los tipos seleccionados para su entrega al escucha de excepciones de la conexión y, por lo tanto, se ha pasado por alto.
+
+ACCIÓN:
+Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
+--------------------------------------------------------------------
+16 de enero de 2024, 3:42:18 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/59c7d6a5][connectionId=414D5143514D312020202020202020206789A66500350240,traceIdentifier=2,remoteTraceIdentifier=105]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
+                       Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
+Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
+El método onMessage() debería modificarse para evitar que emita excepciones.
+                         Clase : class com.ibm.msg.client.jakarta.jms.DetailedJMSException
+                          Pila : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(NativeConstructorAccessorImpl.java:-2)
+                               : jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+                               : jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+                               : java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+                               : java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+                               : com.ibm.msg.client.commonservices.j2se.NLSServices.createException(NLSServices.java:334)
+                               : com.ibm.msg.client.commonservices.nls.NLSServices.createException(NLSServices.java:226)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsErrorUtils.createException(JmsErrorUtils.java:126)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1356)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [1] --> Mensaje : java.lang.Exception: java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.Exception
+                          Pila : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.handleOnMessageThrowable(JmsMessageConsumerImpl.java:1357)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1221)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [2] --> Mensaje : java.util.concurrent.CompletionException: java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.util.concurrent.CompletionException
+                          Pila : java.util.concurrent.CompletableFuture.reportJoin(CompletableFuture.java:413)
+                               : java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2118)
+                               : co.com.bancolombia.commons.jms.mq.listeners.MQMessageListenerRetries.onMessage(MQMessageListenerRetries.java:23)
+                               : com.ibm.msg.client.jakarta.jms.internal.JmsMessageConsumerImpl$JmsProviderMessageListener.onMessage(JmsMessageConsumerImpl.java:1193)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.callMessageListener(WMQAsyncConsumerShadow.java:782)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.honourNoLocal(WMQAsyncConsumerShadow.java:758)
+                               : com.ibm.msg.client.jakarta.wmq.internal.WMQAsyncConsumerShadow.consumer(WMQAsyncConsumerShadow.java:540)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.driveConsumer(RemoteProxyQueue.java:4716)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteProxyQueue.deliverMsgs(RemoteProxyQueue.java:5346)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgsReconnectable(RemoteDispatchThread.java:557)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.deliverMsgs(RemoteDispatchThread.java:531)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteDispatchThread.run(RemoteDispatchThread.java:305)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1240)
+     Se debe a [3] --> Mensaje : java.lang.ClassCastException: class co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse cannot be cast to class jakarta.xml.bind.JAXBElement (co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse is in unnamed module of loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader @1d25f2a5; jakarta.xml.bind.JAXBElement is in unnamed module of loader 'app')
+                         Clase : class java.lang.ClassCastException
+                          Pila : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:32)
 '.
 
 EXPLICACIÓN:

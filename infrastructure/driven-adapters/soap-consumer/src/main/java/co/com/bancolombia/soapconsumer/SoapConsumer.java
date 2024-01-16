@@ -20,18 +20,38 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDataRepository {
 
-
-
     @Override
     public Mono<ResponseData> responseData(ExtractData extractData) {
 
         ConsultaMarcacionesRequest request = createConsultaMarcacionesRequest(extractData);
 
-        JAXBElement<ConsultaMarcacionesResponse> responseObject =  (JAXBElement<ConsultaMarcacionesResponse>)getWebServiceTemplate().marshalSendAndReceive("http://localhost:8088/consultaMarcaciones", request);
+        ConsultaMarcacionesResponse consultaMarcacionesResponse = (ConsultaMarcacionesResponse) getWebServiceTemplate().marshalSendAndReceive("http://localhost:8088/consultaMarcaciones", request);
 
-        ResponseData responseData = new ResponseData();
-        BeanUtils.copyProperties(responseObject.getValue(), responseData);
-        responseData.setInconsistencias(mapInconsistencias(responseObject.getValue().getInconsistencias()));
+        ResponseData responseData = ResponseData.builder()
+                .CATS(consultaMarcacionesResponse.getCATS())
+                .GMF(consultaMarcacionesResponse.getGMF())
+                .apellido1(consultaMarcacionesResponse.getApellido1())
+                .apellido2(consultaMarcacionesResponse.getApellido2())
+                .ciudadDireccion(consultaMarcacionesResponse.getCiudadDireccion())
+                .codigoCiiu(consultaMarcacionesResponse.getCodigoCiiu())
+                .direccion(consultaMarcacionesResponse.getDireccion())
+                .entidadCATS(consultaMarcacionesResponse.getEntidadCATS())
+                .entidadGMF(consultaMarcacionesResponse.getEntidadGMF())
+                .estado(consultaMarcacionesResponse.getEstado())
+                .fecha(consultaMarcacionesResponse.getFecha())
+                .fechaExpedicion(consultaMarcacionesResponse.getFechaExpedicion())
+                .genero(consultaMarcacionesResponse.getGenero())
+                .generoInconsistencias(consultaMarcacionesResponse.isGeneroInconsistencias())
+                .hora(consultaMarcacionesResponse.getHora())
+                .lugarExpedicion(consultaMarcacionesResponse.getLugarExpedicion())
+                .nombre(consultaMarcacionesResponse.getNombre())
+                .nombre1(consultaMarcacionesResponse.getNombre1())
+                .nombre2(consultaMarcacionesResponse.getNombre2())
+                .numeroIdentificacion(consultaMarcacionesResponse.getNumeroIdentificacion())
+                .respuestaConsulta(consultaMarcacionesResponse.getRespuestaConsulta())
+                .tipoIdentificacion(consultaMarcacionesResponse.getTipoIdentificacion())
+                .inconsistencias(mapInconsistencias(consultaMarcacionesResponse.getInconsistencias()))
+                .build();
 
         return Mono.just(responseData);
     }
@@ -53,9 +73,4 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
         BeanUtils.copyProperties(inconsistencias, inconsistenciasDto);
         return inconsistenciasDto;
     }
-
-
-
-
-
 }
