@@ -1,4 +1,4 @@
-12 de enero de 2024, 4:13:01 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/bfee56f][connectionId=414D5143514D31202020202020202020D2AAA16500410040,traceIdentifier=2,remoteTraceIdentifier=18]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -70,7 +70,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.consumer.SoapConsumer.responseData(SoapConsumer.java:31)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -111,7 +111,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:13:01 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/bfee56f][connectionId=414D5143514D31202020202020202020D2AAA16500410040,traceIdentifier=2,remoteTraceIdentifier=18]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -183,7 +183,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.consumer.SoapConsumer.responseData(SoapConsumer.java:31)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -224,7 +224,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:13:01 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/bfee56f][connectionId=414D5143514D31202020202020202020D2AAA16500410040,traceIdentifier=2,remoteTraceIdentifier=18]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -296,7 +296,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.consumer.SoapConsumer.responseData(SoapConsumer.java:31)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -337,7 +337,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:13:01 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/bfee56f][connectionId=414D5143514D31202020202020202020D2AAA16500410040,traceIdentifier=2,remoteTraceIdentifier=18]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -409,7 +409,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.consumer.SoapConsumer.responseData(SoapConsumer.java:31)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -450,7 +450,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -522,7 +522,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -563,7 +563,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -635,7 +635,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -676,7 +676,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -748,7 +748,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -789,7 +789,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:10:30 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/249e21f0][connectionId=414D5143514D312020202020202020206789A66502BB0040,traceIdentifier=2,remoteTraceIdentifier=22]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -861,7 +861,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:35)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -902,7 +902,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -974,7 +974,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1015,7 +1015,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1087,7 +1087,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1128,7 +1128,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1200,7 +1200,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1241,7 +1241,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:16 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1313,7 +1313,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1354,7 +1354,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:17 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1426,7 +1426,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1467,7 +1467,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:19:17 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/624de957][connectionId=414D5143514D31202020202020202020D2AAA16501600040,traceIdentifier=2,remoteTraceIdentifier=34]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1539,7 +1539,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:30)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1580,7 +1580,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:34:43 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/75c41ebd][connectionId=414D5143514D31202020202020202020D2AAA16502600040,traceIdentifier=2,remoteTraceIdentifier=41]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1652,7 +1652,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:40)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1693,7 +1693,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:34:43 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/75c41ebd][connectionId=414D5143514D31202020202020202020D2AAA16502600040,traceIdentifier=2,remoteTraceIdentifier=41]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1765,7 +1765,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:40)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1806,7 +1806,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:34:43 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/75c41ebd][connectionId=414D5143514D31202020202020202020D2AAA16502600040,traceIdentifier=2,remoteTraceIdentifier=41]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1878,7 +1878,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:40)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -1919,7 +1919,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:34:43 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/75c41ebd][connectionId=414D5143514D31202020202020202020D2AAA16502600040,traceIdentifier=2,remoteTraceIdentifier=41]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:18:28 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/23886f5][connectionId=414D5143514D312020202020202020206789A66503E00040,traceIdentifier=2,remoteTraceIdentifier=36]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -1991,7 +1991,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:40)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)
@@ -2032,7 +2032,7 @@ La excepción no está incluida dentro de los tipos seleccionados para su entreg
 ACCIÓN:
 Revise el valor de conexión ASYNC_EXCEPTIONS para asegurarse de que el filtrado de excepciones está establecido según lo previsto.
 --------------------------------------------------------------------
-12 de enero de 2024, 4:34:43 p. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/75c41ebd][connectionId=414D5143514D31202020202020202020D2AAA16502600040,traceIdentifier=2,remoteTraceIdentifier=41]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
+16 de enero de 2024, 10:29:19 a. m. COT[DispatchThread: [com.ibm.mq.jmqi.remote.impl.RemoteSession[:/46f2c035][connectionId=414D5143514D312020202020202020206789A66500F10040,traceIdentifier=5,remoteTraceIdentifier=39]]] com.ibm.msg.client.jakarta.jms.internal.JmsProviderExceptionListener
 Se hace caso omiso de la excepción ya que su tipo está fuera de los seleccionados para el escucha de excepciones: '
                        Mensaje : com.ibm.msg.client.jakarta.jms.DetailedJMSException: JMSCC0037: El método MessageListener.onMessage() ha emitido una excepción de ejecución.
 Un consumidor de mensajes con un escucha de mensajes registrado ha recibido una excepción del método onMessage().
@@ -2104,7 +2104,7 @@ El método onMessage() debería modificarse para evitar que emita excepciones.
                                : org.springframework.ws.client.core.WebServiceTemplate.sendAndReceive(WebServiceTemplate.java:539)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:391)
                                : org.springframework.ws.client.core.WebServiceTemplate.marshalSendAndReceive(WebServiceTemplate.java:380)
-                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:40)
+                               : co.com.bancolombia.soapconsumer.SoapConsumer.responseData(SoapConsumer.java:36)
                                : co.com.bancolombia.usecase.extractdata.ExtractDataUseCase.execute(ExtractDataUseCase.java:42)
                                : co.com.bancolombia.mq.listener.SampleMQMessageListener.process(SampleMQMessageListener.java:26)
                                : jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(NativeMethodAccessorImpl.java:-2)

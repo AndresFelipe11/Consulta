@@ -1,6 +1,7 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project( ':webservicesserver')
 	implementation project( ':soap-consumer')
 	implementation project( ':mq-listener')
 	implementation project( ':rest-consumer')

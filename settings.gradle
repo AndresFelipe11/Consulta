@@ -22,3 +22,5 @@ include ':mq-listener'
 project(':mq-listener').projectDir = file('./infrastructure/entry-points/mq-listener')
 include ':soap-consumer'
 project(':soap-consumer').projectDir = file('./infrastructure/driven-adapters/soap-consumer')
+include ':webservicesserver'
+project(':webservicesserver').projectDir = file('./infrastructure/helpers/webservicesserver')
