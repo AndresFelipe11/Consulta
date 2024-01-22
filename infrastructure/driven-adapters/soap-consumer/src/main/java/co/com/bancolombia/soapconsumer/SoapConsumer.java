@@ -27,6 +27,7 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
 
         ConsultaMarcacionesResponse consultaMarcacionesResponse = (ConsultaMarcacionesResponse) getWebServiceTemplate().marshalSendAndReceive("http://localhost:8088/consultaMarcaciones", request);
 
+        if (consultaMarcacionesResponse != null && consultaMarcacionesResponse instanceof ConsultaMarcacionesResponse) {
         ResponseData responseData = ResponseData.builder()
                 .CATS(consultaMarcacionesResponse.getCATS())
                 .GMF(consultaMarcacionesResponse.getGMF())
@@ -54,6 +55,9 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
                 .build();
 
         return Mono.just(responseData);
+        } else {
+            return Mono.empty();
+        }
     }
 
     private ConsultaMarcacionesRequest createConsultaMarcacionesRequest(ExtractData extractData) {
