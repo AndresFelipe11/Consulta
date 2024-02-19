@@ -60,3 +60,8 @@ ibm:
   mq:
     channel: "DEV.APP.SVRCONN"
     user: "app"
+soap:
+  username: "207502"
+  password: "Blm93rrangel."
+  url: "https://miportafoliouat.transunion.co/ConsultasMarcacionesWS/services/ConsultaMarcaciones"
+#  timeout: 10000

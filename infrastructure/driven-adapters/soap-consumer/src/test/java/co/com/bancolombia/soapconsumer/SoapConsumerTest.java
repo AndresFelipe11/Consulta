@@ -4,6 +4,7 @@ import co.com.bancolombia.model.extractdata.ExtractData;
 import co.com.bancolombia.model.responsedata.ResponseData;
 import co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesRequest;
 import co.com.bancolombia.soapconsumer.tdc.ConsultaMarcacionesResponse;
+import co.com.bancolombia.soapconsumer.tdc.Inconsistencias;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -31,7 +32,6 @@ class SoapConsumerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
     @Test
     void responseData() {
 
@@ -40,11 +40,23 @@ class SoapConsumerTest {
                 .documentNumber("1053868313")
                 .documentType("1")
                 .build();
-        ConsultaMarcacionesRequest request = new ConsultaMarcacionesRequest();
 
-        Mono<ResponseData> simulatedResponse = createSimulatedResponse();
+        ConsultaMarcacionesRequest request = new ConsultaMarcacionesRequest();
+        request.setIdCifin("exampleval1");
+        request.setCodigoProducto("exampleval2");
+        request.setTipoIdentificacion(extractData.getDocumentType());
+        request.setNumeroIdentificacion(extractData.getDocumentNumber());
+        request.setPassword("exampleval4");
+        request.setMotivoConsulta("exampleval5");
+
+
+
 
         ConsultaMarcacionesResponse consultaMarcacionesResponse = new ConsultaMarcacionesResponse();
+        Inconsistencias inconsistencias = new Inconsistencias();
+        inconsistencias.setCodigo("valor de codigo");
+        inconsistencias.setDescripcion("valor de descripcion");
+        consultaMarcacionesResponse.setInconsistencias(inconsistencias);
         consultaMarcacionesResponse.setCATS("valor de CATS");
         consultaMarcacionesResponse.setGMF("valor de GMF");
         consultaMarcacionesResponse.setApellido1("valor de apellido1");
@@ -69,14 +81,31 @@ class SoapConsumerTest {
         consultaMarcacionesResponse.setTipoIdentificacion("valor de tipoIdentificacion");
 
 
-
         Mockito.when(webServiceTemplate.marshalSendAndReceive("http://localhost:8088/consultaMarcaciones", request))
                 .thenReturn(consultaMarcacionesResponse);
 
-        Mockito.when(soapConsumer.responseData(extractData)).thenReturn(simulatedResponse);
+
+        SoapConsumer soapConsumer = new SoapConsumer();
 
 
+        ResponseData responseData = soapConsumer.mapResponseData(consultaMarcacionesResponse);
+        request=soapConsumer.createConsultaMarcacionesRequest(extractData);
+
+        assert request.getIdCifin().equals("exampleval1");
+        assert request.getCodigoProducto().equals("exampleval2");
+        assert request.getTipoIdentificacion().equals("1");
+        assert request.getNumeroIdentificacion().equals("1053868313");
+        assert request.getPassword().equals("exampleval4");
+        assert request.getMotivoConsulta().equals("exampleval5");
+
+        Mono<ResponseData> responseDataMono = Mono.from(Mono.just(responseData));
+
+
+        StepVerifier.create(responseDataMono)
+                .expectNextMatches(responseData1 -> responseData1.getApellido1().equals("valor de apellido1"))
+                .verifyComplete();
     }
+
 
     private Mono<ResponseData> createSimulatedResponse() {
 

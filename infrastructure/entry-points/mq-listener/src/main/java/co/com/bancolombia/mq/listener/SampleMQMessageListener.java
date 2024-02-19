@@ -23,10 +23,7 @@ public class SampleMQMessageListener {
     @MQListener
     public Mono<Void> process(Message message) throws JMSException {
         String text = ((TextMessage) message).getText();
-        extractDataUseCase.execute(text).subscribe(responseData -> {
-            System.out.println("responseData: " + responseData.getCATS());
-        });
-
+        extractDataUseCase.execute(text);
         return Mono.empty();
     }
 
