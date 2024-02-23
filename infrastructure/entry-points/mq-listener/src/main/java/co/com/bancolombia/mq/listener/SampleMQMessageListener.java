@@ -12,6 +12,14 @@ import reactor.core.publisher.Mono;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.TextMessage;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -21,7 +29,7 @@ public class SampleMQMessageListener {
 
     // For fixed queues
     @MQListener
-    public Mono<Void> process(Message message) throws JMSException {
+    public Mono<Void> process(Message message) throws Exception {
         String text = ((TextMessage) message).getText();
         extractDataUseCase.execute(text);
         return Mono.empty();

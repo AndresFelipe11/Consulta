@@ -14,6 +14,12 @@ import org.mockito.MockitoAnnotations;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+
 class ExtractDataUseCaseTest {
 
     @Mock
@@ -30,7 +36,7 @@ class ExtractDataUseCaseTest {
     }
 
     @Test
-    void execute1() {
+    void execute1() throws Exception {
         // Arrange
         String message = "AM2GAF5462020956094136                    11009560941        0000000000000000005120100001 TS000120231220095609413603S0000                                                           55578787872200000001796144310"; // (tu mensaje completo)
 
@@ -50,7 +56,7 @@ class ExtractDataUseCaseTest {
         StepVerifier.create(responseDataMock1).expectComplete();
     }
     @Test
-    void execute() {
+    void execute() throws Exception {
         // Arrange
         String message = "AM2GAF5462020956094136                    11009560941        0000000000000000005120100001 TS000120231220095609413603S0000                                                           5557878787220000000179614431"; // (tu mensaje completo)
 
@@ -75,7 +81,7 @@ class ExtractDataUseCaseTest {
 
 
     @Test
-    void executeInvalidMessage() {
+    void executeInvalidMessage() throws Exception {
 
         //arrange
         String message = "11009560941        0000000000000000005120100001 TS000120231220095609413603S0000                                                           5557878787220000000179614431";
@@ -99,7 +105,7 @@ class ExtractDataUseCaseTest {
     }
 
     @Test
-    void executeInvalidPayload() {
+    void executeInvalidPayload() throws Exception {
 
         //arrange
         String message = "AM2GAF5462020956094136                    11009560941        0000000000000000005120100001 TS000120231220095609413603S0000                                                           55578787872200000001796144L1";

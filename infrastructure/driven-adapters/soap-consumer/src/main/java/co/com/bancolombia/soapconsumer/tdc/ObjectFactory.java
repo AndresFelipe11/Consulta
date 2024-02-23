@@ -19,23 +19,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestHeader }
-     *
-     */
-    public RequestHeader createRequestHeader() {
-        return new RequestHeader();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RequestHeader }{@code >}}
-     *
-     */
-    @XmlElementDecl(namespace = "http://schemas.xmlsoap.org/soap/envelope/", name = "requestHeader")
-    public JAXBElement<RequestHeader> createRequestHeader(RequestHeader value) {
-        return new JAXBElement<RequestHeader>(_RequestHeader_QNAME, RequestHeader.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link Inconsistencias }
      */
     public Inconsistencias createInconsistencias() {

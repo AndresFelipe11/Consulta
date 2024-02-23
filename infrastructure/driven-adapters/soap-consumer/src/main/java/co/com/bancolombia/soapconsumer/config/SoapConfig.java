@@ -4,6 +4,7 @@ import co.com.bancolombia.soapconsumer.SoapConsumer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 
@@ -38,6 +39,11 @@ public class SoapConfig {
     @Bean
     public HttpComponentsMessageSender httpComponentsMessageSender() {
         return new HttpComponentsMessageSender();
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
 }

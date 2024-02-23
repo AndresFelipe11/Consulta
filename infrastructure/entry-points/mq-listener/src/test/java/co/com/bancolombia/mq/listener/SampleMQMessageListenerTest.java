@@ -11,6 +11,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -27,7 +35,7 @@ public class SampleMQMessageListenerTest {
     }
 
     @Test
-    void processTest() throws JMSException {
+    void processTest() throws Exception {
         // Mock de Message
         TextMessage textMessage = mock(TextMessage.class);
         when(textMessage.getText()).thenReturn("Mensaje de prueba");

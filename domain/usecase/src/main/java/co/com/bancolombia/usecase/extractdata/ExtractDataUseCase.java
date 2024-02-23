@@ -8,6 +8,13 @@ import co.com.bancolombia.model.responsedata.gateways.ResponseDataRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.function.Function;
 
 import static co.com.bancolombia.model.exceptions.message.BusinessErrorMessage.*;
@@ -17,7 +24,7 @@ public class ExtractDataUseCase {
 
 private final ResponseDataRepository responseDataRepository;
 
-    public Mono<ResponseData> execute(String message) {
+    public Mono<ResponseData> execute(String message) throws Exception {
         if (message.length() > 207) {
             String cargaUtil = message.substring(Math.min(message.length(), 180));
             System.out.println("cargaUtil: " + cargaUtil);
