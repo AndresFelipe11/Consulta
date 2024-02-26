@@ -8,7 +8,9 @@ import co.com.bancolombia.soapconsumer.tdc.Inconsistencias;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,11 +27,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import org.w3c.dom.Document;
-import org.apache.xml.security.Init;
-import org.apache.xml.security.exceptions.XMLSecurityException;
-import org.apache.xml.security.signature.XMLSignature;
-import org.apache.xml.security.transforms.Transforms;
-import org.apache.xml.security.utils.Constants;
+
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -45,10 +43,11 @@ import java.security.*;
 
 import java.util.Base64;
 
-import static co.com.bancolombia.soapconsumer.SoapMessageSigner.signSoapMessage;
+//import static co.com.bancolombia.soapconsumer.SoapMessageSigner.signSoapMessage;
 
 
 @Service
+@Configuration
 @Primary
 @RequiredArgsConstructor
 public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDataRepository {
@@ -70,43 +69,45 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
         ConsultaMarcacionesRequest request = createConsultaMarcacionesRequest(extractData);
         String requestXML = convertToSOAPMessage(request);
 
-        String keystoreFilename = "C:/Pipe/VCSOFT/Bancolombia/cert/TUCO1.jks";
-        String keystorePassword = "TUCO2038jun19";
-        String keyPassword = "TUCO2038jun19";
-
-        KeyStore keyStore = KeyStore.getInstance("JKS");
-        try (FileInputStream fis = new FileInputStream(keystoreFilename)) {
-            keyStore.load(fis, keystorePassword.toCharArray());
-        }
-
-
-        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-        keyManagerFactory.init(keyStore, keyPassword.toCharArray());
-
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());
-
-        HttpClient client = HttpClient.newBuilder()
-                .sslContext(sslContext)
-                .build();
-
-        String auth = username + ":" + password;
-        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
-        String authHeader = "Basic " + new String(encodedAuth);
-
-        Document doc = signSoapMessage(requestXML, keystoreFilename, keystorePassword, "webservices");
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Content-Type", "text/xml; charset=UTF-8") // Set the appropriate header for SOAP action
-                .header("SOAPAction", "")
-                .header("Authorization", authHeader)// SOAPAction header is often needed
-                .POST(HttpRequest.BodyPublishers.ofString(doc.toString()))
-                .build();
-
-        client.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .thenAccept(System.out::println)
-                .join();
+//
+//
+//        String keystoreFilename = "C:\\Pipe\\VCSOFT\\Bancolombia\\Microservicios\\ConsultaMarcaciones\\applications\\app-service\\src\\main\\resources\\keystore\\consultasMarcaciones.jks";
+//        String keystorePassword = "marcac";
+//        String keyPassword = "marcac";
+//
+//        KeyStore keyStore = KeyStore.getInstance("JKS");
+//        try (FileInputStream fis = new FileInputStream(keystoreFilename)) {
+//            keyStore.load(fis, keystorePassword.toCharArray());
+//        }
+//
+//
+//        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+//        keyManagerFactory.init(keyStore, keyPassword.toCharArray());
+//
+//        SSLContext sslContext = SSLContext.getInstance("TLS");
+//        sslContext.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());
+//
+//        HttpClient client = HttpClient.newBuilder()
+//                .sslContext(sslContext)
+//                .build();
+//
+//        String auth = username + ":" + password;
+//        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
+//        String authHeader = "Basic " + new String(encodedAuth);
+//
+//        Document doc = signSoapMessage(requestXML, keystoreFilename, keystorePassword, "webservices");
+//        HttpRequest httpRequest = HttpRequest.newBuilder()
+//                .uri(URI.create(url))
+//                .header("Content-Type", "text/xml; charset=UTF-8") // Set the appropriate header for SOAP action
+//                .header("SOAPAction", "")
+//                .header("Authorization", authHeader)// SOAPAction header is often needed
+//                .POST(HttpRequest.BodyPublishers.ofString(requestXML))
+//                .build();
+//
+//        client.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
+//                .thenApply(HttpResponse::body)
+//                .thenAccept(System.out::println)
+//                .join();
 
 
 
@@ -121,23 +122,18 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
 //        String signedXmlBody = signXML(requestXML, privateKey);
 //
 //
-//            String auth = username + ":" + password;
-//            byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
-//            String authHeader = "Basic " + new String(encodedAuth);
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.TEXT_XML);
-//            headers.setConnection("Keep-Alive");
-//            headers.add("SOAPAction", "");
-//            headers.add("Authorization", authHeader);
-//
-//            HttpEntity<String> httpEntity = new HttpEntity<>(signedXmlBody, headers);
-//
-//            ResponseEntity<ConsultaMarcacionesResponse> responseEntity = restTemplate.exchange(
-//                    url,
-//                    HttpMethod.POST,
-//                    httpEntity,
-//                    ConsultaMarcacionesResponse.class
-//            );
+
+
+            HttpEntity<String> httpEntity = new HttpEntity<>(requestXML);
+
+            ResponseEntity<ConsultaMarcacionesResponse> responseEntity = restTemplate.exchange(
+                    url,
+                    HttpMethod.POST,
+                    httpEntity,
+                    ConsultaMarcacionesResponse.class
+            );
+
+            System.out.println(responseEntity.getBody());
 
 
 
@@ -152,48 +148,7 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
         }
 
 
-    private static KeyStore loadKeyStore(String path, String storePass, String keyAlias, String keyPass) throws Exception {
-        KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(new FileInputStream(path), storePass.toCharArray());
-        return keyStore;
-    }
 
-    private static KeyPair generateKeyPair() throws Exception {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        keyPairGenerator.initialize(2048);
-        return keyPairGenerator.generateKeyPair();
-    }
-
-    private static String signXML(String xml, PrivateKey privateKey) throws Exception {
-
-        try {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new InputSource(new StringReader(xml)));
-
-        // Crear un objeto XMLSignature
-        XMLSignature signature = new XMLSignature(document, "", XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA256);
-
-        // Agregar las transformaciones necesarias
-        signature.addDocument("");
-
-        // Agregar la clave pública al objeto XMLSignature
-//        signature.addKeyInfo(privateKey.getPublic());
-
-        // Firmar el documento
-        signature.sign(privateKey);
-
-        // Convertir el documento firmado a una cadena de texto
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        StringWriter writer = new StringWriter();
-        transformer.transform(new DOMSource(document), new StreamResult(writer));
-
-        return writer.toString();}
-        catch (Exception e) {
-            throw new Exception("Error al firmar el XML", e);
-        }
-    }
     private String convertToSOAPMessage(ConsultaMarcacionesRequest request) {
         StringBuilder soapMessage = new StringBuilder();
         soapMessage.append("<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://consultasmarcaciones.transunion.com\">\n");
@@ -265,4 +220,5 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
     }
 
 }
+
 
