@@ -66,6 +66,16 @@ soap:
   url: "https://miportafoliouat.transunion.co/ConsultasMarcacionesWS/services/ConsultaMarcaciones"
 
 #  timeout: 10000
+#keystore:
+#  path: "C:\\Pipe\\VCSOFT\\Bancolombia\\Microservicios\\ConsultaMarcaciones\\applications\\app-service\\src\\main\\resources\\keystore\\consultasMarcaciones.jks"
+#  password: "marcaciones"
+#  format: "JKS"
+#  alias: "consultasmarcaciones.ambientesbc.lab"
 keystore:
-  path: "C:\\Pipe\\VCSOFT\\Bancolombia\\Microservicios\\ConsultaMarcaciones\\applications\\app-service\\src\\main\\resources\\keystore\\consultasMarcaciones.jks"
-  password: "marcaciones"
+  path: "C:\\Pipe\\VCSOFT\\Bancolombia\\cert\\TUCO1.jks"
+  password: "TUCO2038jun19"
+  format: "JKS"
+  alias: "webservices"
+
+
+

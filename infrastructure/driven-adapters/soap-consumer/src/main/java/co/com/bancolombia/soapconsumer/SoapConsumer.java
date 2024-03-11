@@ -15,36 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import org.xml.sax.InputSource;
+import org.w3c.dom.Document;
 import reactor.core.publisher.Mono;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.StringReader;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import org.w3c.dom.Document;
-
-
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLContext;
-import javax.print.Doc;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
-import java.security.*;
 
 import java.util.Base64;
-
-//import static co.com.bancolombia.soapconsumer.SoapMessageSigner.signSoapMessage;
-
 
 @Service
 @Configuration
@@ -53,12 +29,18 @@ import java.util.Base64;
 public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDataRepository {
     @Value("${soap.username}")
     private String username;
-
     @Value("${soap.password}")
     private String password;
-
     @Value("${soap.url}")
     private String url;
+    @Value("${keystore.path}")
+    private String keystoreFile;
+    @Value("${keystore.format}")
+    private String keystoreFormat;
+    @Value("${keystore.password}")
+    private String keystorePassword;
+    @Value("${keystore.alias}")
+    private String keyEntryAlias;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -67,73 +49,40 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
     public Mono<ResponseData> responseData(ExtractData extractData) throws Exception {
 
         ConsultaMarcacionesRequest request = createConsultaMarcacionesRequest(extractData);
-        String requestXML = convertToSOAPMessage(request);
+        String requestXML2 = "<wsse:Security xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"></wsse:Security>";
+        String requestXML3 = "";
+        String requestXML = "";
 
-//
-//
-//        String keystoreFilename = "C:\\Pipe\\VCSOFT\\Bancolombia\\Microservicios\\ConsultaMarcaciones\\applications\\app-service\\src\\main\\resources\\keystore\\consultasMarcaciones.jks";
-//        String keystorePassword = "marcac";
-//        String keyPassword = "marcac";
-//
-//        KeyStore keyStore = KeyStore.getInstance("JKS");
-//        try (FileInputStream fis = new FileInputStream(keystoreFilename)) {
-//            keyStore.load(fis, keystorePassword.toCharArray());
-//        }
-//
-//
-//        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-//        keyManagerFactory.init(keyStore, keyPassword.toCharArray());
-//
-//        SSLContext sslContext = SSLContext.getInstance("TLS");
-//        sslContext.init(keyManagerFactory.getKeyManagers(), null, new SecureRandom());
-//
-//        HttpClient client = HttpClient.newBuilder()
-//                .sslContext(sslContext)
-//                .build();
-//
-//        String auth = username + ":" + password;
-//        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
-//        String authHeader = "Basic " + new String(encodedAuth);
-//
-//        Document doc = signSoapMessage(requestXML, keystoreFilename, keystorePassword, "webservices");
-//        HttpRequest httpRequest = HttpRequest.newBuilder()
-//                .uri(URI.create(url))
-//                .header("Content-Type", "text/xml; charset=UTF-8") // Set the appropriate header for SOAP action
-//                .header("SOAPAction", "")
-//                .header("Authorization", authHeader)// SOAPAction header is often needed
-//                .POST(HttpRequest.BodyPublishers.ofString(requestXML))
-//                .build();
-//
-//        client.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
-//                .thenApply(HttpResponse::body)
-//                .thenAccept(System.out::println)
-//                .join();
+        SoapMessageSigner soapMessageSigner = new SoapMessageSigner(keystoreFile, keystoreFormat, keystorePassword, keystorePassword, keyEntryAlias);
 
+        try {
+            Document doc =soapMessageSigner.sign(requestXML2);
+            requestXML3 = soapMessageSigner.convertDocumentToString(doc);
+            requestXML = convertToSOAPMessage(request, requestXML3);
+            System.out.println(requestXML);
+        } catch (XmlSigningException e) {
+            throw new RuntimeException(e);
+        }
 
+        String auth = username + ":" + password;
+        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
+        String authHeader = "Basic " + new String(encodedAuth);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setConnection("Keep-Alive");
+        headers.add("SOAPAction", "");
+        headers.add("Authorization", authHeader);
 
+            HttpEntity<String> httpEntity = new HttpEntity<>(requestXML, headers);
 
-//        Init.init();
-
-//        KeyStore keyStore = loadKeyStore("C:/Pipe/VCSOFT/Bancolombia/cert/TUCO1.jks", "TUCO2038jun19", "webservices", "TUCO2038jun19");
-//        PrivateKey privateKey = (PrivateKey) keyStore.getKey("webservices", "TUCO2038jun19".toCharArray());
+//            ResponseEntity<ConsultaMarcacionesResponse> responseEntity = restTemplate.exchange(
+//                    url,
+//                    HttpMethod.POST,
+//                    httpEntity,
+//                    ConsultaMarcacionesResponse.class
+//            );
 //
 //
-//
-//        String signedXmlBody = signXML(requestXML, privateKey);
-//
-//
-
-
-            HttpEntity<String> httpEntity = new HttpEntity<>(requestXML);
-
-            ResponseEntity<ConsultaMarcacionesResponse> responseEntity = restTemplate.exchange(
-                    url,
-                    HttpMethod.POST,
-                    httpEntity,
-                    ConsultaMarcacionesResponse.class
-            );
-
-            System.out.println(responseEntity.getBody());
+//            System.out.println(responseEntity.getBody());
 
 
 
@@ -149,11 +98,14 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
 
 
 
-    private String convertToSOAPMessage(ConsultaMarcacionesRequest request) {
+    private String convertToSOAPMessage(ConsultaMarcacionesRequest request, String requestXML) {
+
         StringBuilder soapMessage = new StringBuilder();
         soapMessage.append("<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://consultasmarcaciones.transunion.com\">\n");
-        soapMessage.append("   <soapenv:Header/>\n");
-        soapMessage.append("   <soapenv:Body>\n");
+        soapMessage.append("<soapenv:Header>\n");
+        soapMessage.append(requestXML).append("\n");
+        soapMessage.append("</soapenv:Header>\n");
+        soapMessage.append("   <soapenv:Body wsu:Id=\"id-492781FC73DD98BD0F170985309014510\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" >\n");
         soapMessage.append("      <con:consultaMarcaciones soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n");
         soapMessage.append("         <p_parametros xsi:type=\"dto:ParametrosDTO\" xmlns:dto=\"http://dto.consultasmarcaciones.transunion.com\">\n");
         soapMessage.append("            <codigoProducto xsi:type=\"soapenc:string\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\">").append(request.getCodigoProducto()).append("</codigoProducto>\n");
@@ -220,5 +172,6 @@ public class SoapConsumer extends WebServiceGatewaySupport implements ResponseDa
     }
 
 }
+
 
 
