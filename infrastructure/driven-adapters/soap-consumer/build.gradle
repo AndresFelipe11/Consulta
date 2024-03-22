@@ -12,7 +12,9 @@ dependencies {
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.0'
     runtimeOnly 'com.sun.xml.bind:jaxb-impl:3.0.0'
     implementation 'org.apache.santuario:xmlsec:2.2.1'
-    // https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-security
     implementation 'org.springframework.ws:spring-ws-security:4.0.10'
+    implementation 'org.apache.ws.security:wss4j:1.6.19'
+    implementation 'org.apache.xmlbeans:xmlbeans:2.5.0'
+
 
 }

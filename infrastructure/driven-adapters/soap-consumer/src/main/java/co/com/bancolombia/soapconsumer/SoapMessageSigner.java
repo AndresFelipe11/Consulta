@@ -2,6 +2,10 @@ package co.com.bancolombia.soapconsumer;
 
 
 import jakarta.xml.bind.annotation.XmlElement;
+import org.apache.ws.security.WSConstants;
+import org.apache.ws.security.WSSecurityException;
+import org.apache.ws.security.components.crypto.CredentialException;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -31,6 +35,7 @@ import java.io.*;
 import java.security.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.security.spec.AlgorithmParameterSpec;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +43,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
+import org.apache.ws.security.message.WSSecHeader;
+import org.apache.ws.security.components.crypto.Merlin;
 
 public class SoapMessageSigner {
 
@@ -65,6 +73,13 @@ public class SoapMessageSigner {
 
     public Document sign(String signXml) throws XmlSigningException {
 
+//        ImprovedWSSecSignature wssSign = new ImprovedWSSecSignature();
+//        wssSign.setSignatureAlgorithm("http://www.w3.org/2000/09/xmldsig#rsa-sha1");
+//        wssSign.setDigestAlgo("http://www.w3.org/2000/09/xmldsig#sha1");
+//        wssSign.setUseSingleCertificate(true);
+//        wssSign.setSigCanonicalization(WSConstants.C14N_EXCL_OMIT_COMMENTS);
+
+
         // STEP 1
 
         // Create a Reference to the document being signed by specifying an empty URI value to represent the entire
@@ -72,8 +87,9 @@ public class SoapMessageSigner {
         Reference ref;
         try {
 
+
             ref = signatureFactory.newReference("", signatureFactory.newDigestMethod(DigestMethod.SHA1, null),
-                    Collections.singletonList(signatureFactory.newTransform("http://www.w3.org/2001/10/xml-exc-c14n#", (TransformParameterSpec) null)),
+                    Collections.singletonList(signatureFactory.newTransform(WSConstants.C14N_EXCL_OMIT_COMMENTS, (TransformParameterSpec) null)),
                     null, null);
 
 
@@ -136,6 +152,14 @@ public class SoapMessageSigner {
             // Marshal, generate, and sign the enveloped signature
             signature.sign(dsc);
 
+//            WSSecHeader secHeader = new WSSecHeader();
+//
+//            try {
+//                wssSign.build(doc, getCrypto(), secHeader);
+//            } catch (WSSecurityException e) {
+//                throw new RuntimeException(e);
+//            }
+
 
             return doc;
 
@@ -174,15 +198,14 @@ public class SoapMessageSigner {
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
             // Configuración para eliminar los espacios en blanco
-//            transformer.setOutputProperty(OutputKeys.INDENT, "no");
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
             // Omitir la inclusión del encabezado XML
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-//            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
             StringWriter writer = new StringWriter();
             transformer.transform(new DOMSource(doc), new StreamResult(writer));
             String xmlString = writer.getBuffer().toString();
-//            xmlString.replace("&#13;", "");
+            xmlString.replace("&#13;", "");
 
             return writer.getBuffer().toString();
 
@@ -298,6 +321,8 @@ public class SoapMessageSigner {
         return doc;
     }
 
+
+
     public Document addCanonicalizationMethod (Document doc) {
 
         NodeList signedInfo = doc.getElementsByTagName("SignedInfo");
@@ -317,6 +342,8 @@ public class SoapMessageSigner {
 
         return doc;
     }
+
+
 
 }
 
